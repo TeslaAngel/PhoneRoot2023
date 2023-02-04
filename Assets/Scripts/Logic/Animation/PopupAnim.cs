@@ -86,9 +86,10 @@ namespace Logic
                 .StartValueAnim(TargetType.ScaleX, 0, closePopupTime)
                 .StartValueAnim(TargetType.ScaleY, 0, closePopupTime);
             yield return new WaitForSeconds(closePopupTime);
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            // ？active 设 false 后 不再执行之后的语句 ...
             // 多等待一段事件再释放
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(.2f);
             Level2Logic.Inst.ReleasePopupWindow(this);
         }
 
