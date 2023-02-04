@@ -5,6 +5,7 @@ using UnityEngine;
 public class VirusShelter
 {
     public static int InNumof = Random.Range(1, 3);
+    public static GameObject HB;
 }
 
 public class ChatContainer : MonoBehaviour
@@ -22,6 +23,11 @@ public class ChatContainer : MonoBehaviour
     public GameObject VirusPreFab;
     public SpriteRenderer background;
     public Sprite EmptySprite;
+    public GameObject HB;
+    private void Awake()
+    {
+        VirusShelter.HB = HB;
+    }
 
     private void Start()
     {
