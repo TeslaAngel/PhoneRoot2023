@@ -1,138 +1,184 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-[RequireComponent(typeof(Collider2D))]
-public class TouchableItem : MonoBehaviour
+namespace Touchable
 {
-	protected bool m_touchEventEnabled = true;
-	public bool TouchEventEnabled => m_touchEventEnabled;
-
-	public void SetTouchEventEnabled(bool enabled)
+	[RequireComponent(typeof(Collider2D))]
+	public abstract class TouchableItem : MonoBehaviour
 	{
-		m_touchEventEnabled = enabled;
-	}
+		protected bool m_touchEventEnabled = true;
+		public bool TouchEventEnabled => m_touchEventEnabled;
 
-
-	[SerializeField]
-	protected bool allowDragInClick = false;
-
-	[SerializeField]
-	protected bool allowDragOutPress = false;
-
-
-	public UnityEvent onPressStartEvent;
-	public UnityEvent onPressHoldEvent;
-	public UnityEvent onPressEndEvent;
-
-	protected bool m_pressing = false;
-	protected Vector2 m_pressStartPoint = Vector2.zero;
-	protected Vector2 m_pressLastHoldPoint = Vector2.zero;
-	protected Vector2 m_pressHoldPoint = Vector2.zero;
-
-	// OnPressStart, OnPressEnter, OnClick, OnPress
-	public bool OnPressStart(Vector2 hitPos, int holdFrames)
-	{
-		if (m_touchEventEnabled || holdFrames <= 0)
+		public void SetTouchEventEnabled(bool enabled)
 		{
-			m_pressing = true;
-			m_pressStartPoint = hitPos;
-			m_pressLastHoldPoint = hitPos;
-			m_pressHoldPoint = hitPos;
-			if (m_touchEventEnabled)
-				onPressStartEvent.Invoke();
-			return true;
+			m_touchEventEnabled = enabled;
 		}
-		return false;
-	}
 
-	// OnPressHold, OnPressMove
-	public void OnPressHold(Vector2 hitPos, int holdFrames)
-	{
-		if (m_pressing)
+
+		[SerializeField]
+		protected int touchPriority = 0;
+		public int TouchPriority => touchPriority;
+
+
+		[SerializeField]
+		protected bool allowDragInClick = false;
+
+		[SerializeField]
+		protected bool allowDragOutPress = false;
+
+		[SerializeField]
+		protected bool allowPressEndAfterExit = true;
+		// TODO
+
+
+		[SerializeField]
+		protected bool singlePressItem = false;
+
+		protected static int numberPressCount = 0;
+		public static int NumberPressCount => numberPressCount;
+		public static bool HasNumberPressed => numberPressCount > 0;
+		// TODO : key
+
+		protected static void OnNumberPressStart()
 		{
-			m_pressLastHoldPoint = m_pressHoldPoint;
-			m_pressHoldPoint = hitPos;
-			if (m_touchEventEnabled)
-				onPressHoldEvent.Invoke();
+			++numberPressCount;
 		}
-	}
 
-	// OnPressExit
-	public bool OnPressExit(Vector2 hitPos, int holdFrames)
-	{
-		if (m_pressing)
+		protected static void OnNumberPressEnd()
 		{
-			if (allowDragOutPress)
+			--numberPressCount;
+		}
+
+
+		protected bool m_pressing = false;
+		protected Vector2 m_pressStartPoint = Vector2.zero;
+		protected Vector2 m_pressLastHoldPoint = Vector2.zero;
+		protected Vector2 m_pressHoldPoint = Vector2.zero;
+
+		// OnPressStart, OnPressEnter, OnClick, OnPress
+		public bool OnPressStart(Vector2 hitPos, int holdFrames)
+		{
+			if (CheckCanPressStart(holdFrames))
+			{
+				OnNumberPressStart();
+				m_pressing = true;
+				m_pressStartPoint = hitPos;
+				m_pressLastHoldPoint = hitPos;
+				m_pressHoldPoint = hitPos;
+				if (m_touchEventEnabled)
+					//onPressStartEvent.Invoke();
+					CallOnPressStartEvent();
+				return true;
+			}
+			return false;
+		}
+
+		protected bool CheckCanPressStart(int holdFrames)
+		{
+			return (!singlePressItem || !HasNumberPressed) && (allowDragInClick || holdFrames <= 0);
+		}
+
+		// OnPressHold, OnPressMove
+		public void OnPressHold(Vector2 hitPos, int holdFrames)
+		{
+			if (m_pressing)
 			{
 				m_pressLastHoldPoint = m_pressHoldPoint;
 				m_pressHoldPoint = hitPos;
-				return false;
-			}
-			else
-			{
-				//OnPressEnd(hitPos, holdFrames);
-				return true;
+				if (m_touchEventEnabled)
+					//	onPressHoldEvent.Invoke();
+					CallOnPressHoldEvent();
 			}
 		}
-		return true;
-	}
 
-	// OnPressEnd, OnRelease
-	public void OnPressEnd(Vector2 hitPos, int holdFrames)
-	{
-		if (m_pressing)
+		// OnPressExit
+		public bool OnPressExit(Vector2 hitPos, int holdFrames)
 		{
-			if (m_touchEventEnabled)
-				onPressEndEvent.Invoke();
-			m_pressStartPoint = Vector2.zero;
-			m_pressLastHoldPoint = Vector2.zero;
-			m_pressHoldPoint = Vector2.zero;
+			if (m_pressing)
+			{
+				CallOnPressExitEvent();
+				if (allowDragOutPress)
+				{
+					//m_pressLastHoldPoint = m_pressHoldPoint;
+					//m_pressHoldPoint = hitPos;
+					return false;
+				}
+				else
+				{
+					//OnPressEnd(hitPos, holdFrames);
+					return true;
+				}
+			}
+			return true;
 		}
+
+		// OnPressEnd, OnRelease
+		public void OnPressEnd(Vector2 hitPos, int holdFrames)
+		{
+			if (m_pressing)
+			{
+				OnNumberPressEnd();
+				if (m_touchEventEnabled)
+					//	onPressEndEvent.Invoke();
+					CallOnPressEndEvent();
+				m_pressStartPoint = Vector2.zero;
+				m_pressLastHoldPoint = Vector2.zero;
+				m_pressHoldPoint = Vector2.zero;
+			}
+		}
+
+
+		//public UnityEvent onPressStartEvent;
+		//public UnityEvent onPressHoldEvent;
+		//public UnityEvent onPressEndEvent;
+
+		public abstract void CallOnPressStartEvent();
+		public abstract void CallOnPressHoldEvent();
+		public abstract void CallOnPressExitEvent();
+		public abstract void CallOnPressEndEvent();
+
+
+		public void DebugEvent(string text)
+		{
+			Debug.Log(gameObject.name + " : " + text);
+		}
+
+
+		// 使用 Trigger 范围
+
+		protected Collider2D m_touchCollider;
+
+		protected void InitCollider()
+		{
+			m_touchCollider = GetComponent<Collider2D>();
+		}
+
+		/*public bool TestHit(Vector2 hitPos)
+		{
+			//m_touchCollider.
+		}*/
+
+
+		//protected void UpdateTouch()
+		//{
+		//
+		//}
+
+
+		/*protected void OnTriggerEnter2D(Collider2D collision)
+		{
+			Debug.Log("TouchableItem Enter : " + collision.gameObject.name);
+		}
+
+		protected void OnTriggerStay2D(Collider2D collision)
+		{
+			Debug.Log("TouchableItem Stay : " + collision.gameObject.name);
+		}
+
+		protected void OnTriggerExit2D(Collider2D collision)
+		{
+			Debug.Log("TouchableItem Exit : " + collision.gameObject.name);
+		}*/
 	}
-
-
-	public void DebugEvent(string text)
-	{
-		Debug.Log(gameObject.name + " : " + text);
-	}
-
-
-	// 使用 Trigger 范围
-
-	protected Collider2D m_touchCollider;
-
-	protected void InitCollider()
-	{
-		m_touchCollider = GetComponent<Collider2D>();
-	}
-
-	/*public bool TestHit(Vector2 hitPos)
-	{
-		//m_touchCollider.
-	}*/
-
-
-	protected void UpdateTouch()
-	{
-
-	}
-
-
-
-	/*protected void OnTriggerEnter2D(Collider2D collision)
-	{
-		Debug.Log("TouchableItem Enter : " + collision.gameObject.name);
-	}
-
-	protected void OnTriggerStay2D(Collider2D collision)
-	{
-		Debug.Log("TouchableItem Stay : " + collision.gameObject.name);
-	}
-
-	protected void OnTriggerExit2D(Collider2D collision)
-	{
-		Debug.Log("TouchableItem Exit : " + collision.gameObject.name);
-	}*/
 }

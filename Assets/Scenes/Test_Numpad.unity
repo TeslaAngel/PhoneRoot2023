@@ -463,6 +463,10 @@ PrefabInstance:
       propertyPath: number
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6695853388372501026, guid: 9e37a65726cfe9c4c8deae816120f912, type: 3}
+      propertyPath: btnClickEnabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6695853388372501028, guid: 9e37a65726cfe9c4c8deae816120f912, type: 3}
       propertyPath: m_Name
       value: NumpadItem 4
@@ -853,6 +857,10 @@ PrefabInstance:
       propertyPath: number
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6695853388372501026, guid: 9e37a65726cfe9c4c8deae816120f912, type: 3}
+      propertyPath: btnClickEnabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6695853388372501028, guid: 9e37a65726cfe9c4c8deae816120f912, type: 3}
       propertyPath: m_Name
       value: NumpadItem 7
@@ -991,6 +999,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6695853388372501026, guid: 9e37a65726cfe9c4c8deae816120f912, type: 3}
       propertyPath: number
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695853388372501026, guid: 9e37a65726cfe9c4c8deae816120f912, type: 3}
+      propertyPath: btnClickEnabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6695853388372501028, guid: 9e37a65726cfe9c4c8deae816120f912, type: 3}
