@@ -28,7 +28,7 @@ public class FakePicScript : MonoBehaviour
             if(Input.GetAxis("Mouse X") < 0)
             {
                 float d = Vector3.Distance(FracTL.position, Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z)));
-                FracTL.Rotate(0f, 0f, -Mathf.Asin(Input.GetAxis("Mouse X") / d)*10f);
+                FracTL.Rotate(0f, 0f, -Mathf.Asin(Input.GetAxis("Mouse X") / d)*20f);
                 print("R");
             }
         }
@@ -37,7 +37,7 @@ public class FakePicScript : MonoBehaviour
             if (Input.GetAxis("Mouse Y") < 0)
             {
                 float d = Vector3.Distance(FracTL.position, Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z)));
-                FracBR.Rotate(0f, 0f, Mathf.Asin(Input.GetAxis("Mouse Y") / d)*10f);
+                FracBR.Rotate(0f, 0f, Mathf.Asin(Input.GetAxis("Mouse Y") / d)*20f);
                 print("L");
             }
         }

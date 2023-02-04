@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KeyGeneratorClass
 {
-    public static int ButOfKey = Random.Range(0, 9);
+    public static int ButOfKey = Random.Range(0, 8);
 }
 
 [RequireComponent(typeof(SpriteRenderer))]
