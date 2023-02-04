@@ -211,6 +211,8 @@ namespace Logic
 		#endregion Audio
 
 
+		[Space()]
+
 		[SerializeField]
 		protected List<TouchableItem> appIconItems = new List<TouchableItem>();
 		[SerializeField]
@@ -223,6 +225,8 @@ namespace Logic
 		protected GhostAnim ghostAnim = null;
 		[SerializeField]
 		protected MemoryWarnAnim memoryWarnAnim = null;
+		[SerializeField]
+		protected GhostTalkAnim ghostTalkAnim = null;
 
 
 		protected void InitLevel()
@@ -264,6 +268,8 @@ namespace Logic
 		{
 			ghostAnim?.SetAnimEnabled(false);
 		}
+
+		[Space()]
 
 		[SerializeField]
 		protected float ghoseMoveDist = 2f;
@@ -358,14 +364,17 @@ namespace Logic
 		protected void TipMemoryWarn1()
 		{
 			memoryWarnAnim.StartWarn1Anim();
+			// ...
 		}
 		protected void TipMemoryWarn2()
 		{
 			memoryWarnAnim.StartWarn2Anim();
+			// ...
 		}
 		protected void TipMemoryWarn3()
 		{
 			memoryWarnAnim.StartWarn3Anim();
+			// ...
 		}
 		protected void TipMemoryWarn4()
 		{
@@ -374,6 +383,8 @@ namespace Logic
 
 		#endregion MemoryWarn
 
+
+		[Space()]
 
 		[SerializeField]
 		protected string nextSceneName = "Level3";
@@ -384,7 +395,40 @@ namespace Logic
 		}
 
 
+		#region GhostTalk
+
+		[SerializeField, Multiline(3)]
+		protected List<string> ghostTalkTexts = new List<string>();
+
+		protected void PrintGhostTalkText(int index)
+		{
+			if (0 <= index && index < ghostTalkTexts.Count)
+				ghostTalkAnim.SetTextWithPrint(ghostTalkTexts[index]);
+		}
+
+		protected void ClearGhostTalkText()
+		{
+			ghostTalkAnim.ClearText();
+		}
+
+		protected void FadeOutGhostTalkText()
+		{
+			ghostTalkAnim.StartFadeOutText();
+		}
+
+		public float PrintTextTotalDuration(int index)
+		{
+			if (0 <= index && index < ghostTalkTexts.Count)
+				return ghostTalkAnim.PrintTextTotalDuration(ghostTalkTexts[index]);
+			return 0f;
+		}
+
+		#endregion GhostTalk
+
+
 		#region Timeline
+
+		[Space()]
 
 		[SerializeField]
 		protected float waitTimeBeforeStart = 1f;
@@ -394,7 +438,10 @@ namespace Logic
 		protected float waitTimeAfterLockCage = 3f;
 
 		[SerializeField]
-		protected float waitTimeAfterVague = 6f;
+		protected float waitTimeAfterVague = .5f;
+
+		[SerializeField]
+		protected float waitTimeAfterGhostTalk0 = .5f;
 
 		//[SerializeField]
 		//protected float waitTimeAfterGhostLeft = 6f;
@@ -422,14 +469,16 @@ namespace Logic
 			StartVagueAnim();
 			yield return new WaitForSeconds(vagueAnim.AnimTotalDuration());
 
-			// ...
-
 			yield return new WaitForSeconds(waitTimeAfterVague);
+			PrintGhostTalkText(0);
+			yield return new WaitForSeconds(PrintTextTotalDuration(0) + waitTimeAfterGhostTalk0);
 
 			StartGhostMoveRight();
+			FadeOutGhostTalkText();
 			yield return new WaitForSeconds(ghoseMoveRightTime);
 			HideGhost();
 			StopGhostAnimFrames();
+			ClearGhostTalkText();
 			yield return new WaitForSeconds(waitTimeAfterGhostRight);
 
 			ShowNewPopupWindow(true);
@@ -447,5 +496,8 @@ namespace Logic
 		}
 
 		#endregion Timeline
+
+
+		// TODO : ´ò×Ö»úÒôÐ§
 	}
 }
