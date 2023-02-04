@@ -2991,6 +2991,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3436811893065855326, guid: 835e815d8214cd940bf73931e87aea21, type: 3}
+      propertyPath: nextScene
+      value: Main_Level2
+      objectReference: {fileID: 0}
     - target: {fileID: 3436811893065855327, guid: 835e815d8214cd940bf73931e87aea21, type: 3}
       propertyPath: m_Name
       value: Scene Jumper

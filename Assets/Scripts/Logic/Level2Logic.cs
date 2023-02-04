@@ -210,6 +210,7 @@ namespace Logic
 
 		#endregion Audio
 
+		public GameObject SceneJumper;
 
 		[Space()]
 
@@ -391,7 +392,8 @@ namespace Logic
 		
 		protected void GotoNextScene()
 		{
-			SceneManager.LoadScene(nextSceneName);
+			//SceneManager.LoadScene(nextSceneName);
+			SceneJumper.SetActive(true);
 		}
 
 
