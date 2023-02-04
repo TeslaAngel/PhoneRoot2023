@@ -17,7 +17,9 @@ public class TouchableItem : MonoBehaviour
 
 	[SerializeField]
 	protected bool allowDragInClick = false;
-	public bool AllowDragInClick => allowDragInClick;
+
+	[SerializeField]
+	protected bool allowDragOutPress = false;
 
 
 	public UnityEvent onPressStartEvent;
@@ -29,15 +31,20 @@ public class TouchableItem : MonoBehaviour
 	protected Vector2 m_pressLastHoldPoint = Vector2.zero;
 	protected Vector2 m_pressHoldPoint = Vector2.zero;
 
-	// OnPressStart, OnClick, OnPress
-	public void OnPressStart(Vector2 hitPos, int holdFrames)
+	// OnPressStart, OnPressEnter, OnClick, OnPress
+	public bool OnPressStart(Vector2 hitPos, int holdFrames)
 	{
-		m_pressing = true;
-		m_pressStartPoint = hitPos;
-		m_pressLastHoldPoint = hitPos;
-		m_pressHoldPoint = hitPos;
-		if (m_touchEventEnabled)
-			onPressStartEvent.Invoke();
+		if (m_touchEventEnabled || holdFrames <= 0)
+		{
+			m_pressing = true;
+			m_pressStartPoint = hitPos;
+			m_pressLastHoldPoint = hitPos;
+			m_pressHoldPoint = hitPos;
+			if (m_touchEventEnabled)
+				onPressStartEvent.Invoke();
+			return true;
+		}
+		return false;
 	}
 
 	// OnPressHold, OnPressMove
@@ -50,6 +57,26 @@ public class TouchableItem : MonoBehaviour
 			if (m_touchEventEnabled)
 				onPressHoldEvent.Invoke();
 		}
+	}
+
+	// OnPressExit
+	public bool OnPressExit(Vector2 hitPos, int holdFrames)
+	{
+		if (m_pressing)
+		{
+			if (allowDragOutPress)
+			{
+				m_pressLastHoldPoint = m_pressHoldPoint;
+				m_pressHoldPoint = hitPos;
+				return false;
+			}
+			else
+			{
+				//OnPressEnd(hitPos, holdFrames);
+				return true;
+			}
+		}
+		return true;
 	}
 
 	// OnPressEnd, OnRelease

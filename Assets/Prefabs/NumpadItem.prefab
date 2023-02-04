@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allowDragInClick: 0
+  allowDragOutPress: 1
   onPressStartEvent:
     m_PersistentCalls:
       m_Calls:
