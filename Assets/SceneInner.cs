@@ -15,6 +15,7 @@ public class SceneInner : MonoBehaviour
     {
         SSedTime = SSTime;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
     }
 
     // Update is called once per frame
