@@ -47,7 +47,7 @@ namespace Logic
             if (!m_pressExited)
             {
                 ClosePopupWindow();
-                // 再次开打弹窗
+                // 立即再弹出一个弹窗
                 Level2Logic.Inst.ShowNewPopupWindow();
             }
         }
