@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Touchable
   - DynamicEntry
+  - PhoneScreen
   layers:
   - Default
   - TransparentFX
@@ -43,9 +44,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: PhoneBg
+    uniqueID: 2330414753
+    locked: 0
   - name: AppIcon
     uniqueID: 3612076413
     locked: 0
   - name: Popup
     uniqueID: 318699963
+    locked: 0
+  - name: PhoneScreen
+    uniqueID: 2280479791
+    locked: 0
+  - name: PhoneFg
+    uniqueID: 1954942627
     locked: 0

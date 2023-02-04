@@ -60,6 +60,7 @@ namespace Touchable
 		protected int holdFrames = 0;
 
 		public static readonly string touchItemTag = "Touchable";
+		public static readonly string phoneScreenTag = "PhoneScreen"; // todo
 
 		protected HashSet<TouchableItem> m_pressingItems = new HashSet<TouchableItem>();
 		protected HashSet<TouchableItem> m_tempItems = new HashSet<TouchableItem>();

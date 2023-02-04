@@ -7,6 +7,14 @@ namespace Touchable
 	[RequireComponent(typeof(Collider2D))]
 	public abstract class TouchableItem : MonoBehaviour
 	{
+		protected bool m_touchEnabled = true;
+		public bool TouchEnabled => m_touchEnabled;
+
+		public void SetTouchEnabled(bool enabled)
+		{
+			m_touchEnabled = enabled;
+		}
+
 		protected bool m_touchEventEnabled = true;
 		public bool TouchEventEnabled => m_touchEventEnabled;
 
@@ -76,7 +84,8 @@ namespace Touchable
 
 		protected bool CheckCanPressStart(int holdFrames)
 		{
-			return (!singlePressItem || !HasNumberPressed) && (allowDragInClick || holdFrames <= 0);
+			//return (!singlePressItem || !HasNumberPressed) && (allowDragInClick || holdFrames <= 0);
+			return TouchEnabled && (!singlePressItem || !HasNumberPressed) && (allowDragInClick || holdFrames <= 0);
 		}
 
 		// OnPressHold, OnPressMove

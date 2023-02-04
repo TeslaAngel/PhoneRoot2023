@@ -105,7 +105,7 @@ namespace Logic
             // ...
         }
 
-        [SerializeField]
+        /*[SerializeField]
         protected Rect randomPosRange = new Rect(-2, -3, 2, 3);
 
         public void SetRandomPosition()
@@ -116,7 +116,7 @@ namespace Logic
                 Random.Range(range.y, range.height),
                 transform.position.z);
             transform.position = pos;
-        }
+        }*/
 
 
         public void OnGotFocus()
@@ -150,8 +150,10 @@ namespace Logic
                 bgRenderer.sortingOrder = z + 0;
             //if (barRenderer)
             //    barRenderer.sortingOrder = z + 1;
+            //if (closeBtnRenderer)
+            //    closeBtnRenderer.sortingOrder = z + 2;
             if (closeBtnRenderer)
-                closeBtnRenderer.sortingOrder = z + 2;
+                closeBtnRenderer.sortingOrder = z + 1;
 
             var pos = transform.position;
             pos.z = 15 + z;

@@ -102,6 +102,7 @@ namespace Touchable
 				var pos = transform.position;
 				pos.x = value;
 				transform.position = pos;
+				// £¿localPosition
 			}
 		}
 		public float CurrentPosY {
@@ -110,6 +111,7 @@ namespace Touchable
 				var pos = transform.position;
 				pos.y = value;
 				transform.position = pos;
+				// £¿localPosition
 			}
 		}
 		public float CurrentScaleX {
