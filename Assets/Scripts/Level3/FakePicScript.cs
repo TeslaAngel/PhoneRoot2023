@@ -9,6 +9,7 @@ public class FakePicScript : MonoBehaviour
     private FractionScript FSTL;
     private FractionScript FSBR;
 
+    private bool Exiting = false;
 
     private void Awake()
     {
@@ -37,9 +38,14 @@ public class FakePicScript : MonoBehaviour
             }
         }
 
-        if (Mathf.Abs(FracTL.localRotation.z) + Mathf.Abs(FracBR.localRotation.z) > .35f)
+        if (Mathf.Abs(FracTL.localRotation.z) + Mathf.Abs(FracBR.localRotation.z) > .65f)
         {
-            Destroy(gameObject);
+            Exiting = true;
+        }
+
+        if (Exiting)
+        {
+            transform.Translate(-10 * Time.deltaTime, 0, 0);
         }
     }
 
