@@ -8,7 +8,7 @@ TagManager:
   - DynamicEntry
   - PhoneScreen
   - HomeButton
-  - WaterDrop
+  - MapBullet
   layers:
   - Default
   - TransparentFX
@@ -17,7 +17,7 @@ TagManager:
   - Water
   - UI
   - 
-  - Level5 HackIcon
+  - 
   - 
   - 
   - 

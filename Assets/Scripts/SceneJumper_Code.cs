@@ -32,7 +32,7 @@ public class SceneJumper_Code : MonoBehaviour
         {
             textMeshPro.SetText("");
         }
-        if ((TimeFlowed-.5f) * WordPerSec >= CodeForRoot.Length)
+        if ((TimeFlowed-1f) * WordPerSec >= CodeForRoot.Length)
         {
             SceneManager.LoadScene(SceneToJump);
         }
