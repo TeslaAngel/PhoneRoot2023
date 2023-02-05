@@ -34,6 +34,8 @@ namespace Logic
 		public void SetTextWithPrint(string text)
 		{
 			ClearText();
+			StopFadeOutText();
+			ResetTextAlpha();
 
 			m_printTextMode = true;
 			m_targetText = text;
@@ -115,6 +117,11 @@ namespace Logic
 		public void StartFadeOutText()
 		{
 			fadeAnimData.Start(1, 0, fadeOutTime);
+		}
+
+		public void StopFadeOutText()
+		{
+			fadeAnimData.Stop();
 		}
 
 
