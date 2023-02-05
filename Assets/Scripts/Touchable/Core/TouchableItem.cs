@@ -148,6 +148,10 @@ namespace Touchable
 		public abstract void CallOnPressEndEvent();
 
 
+		public Vector2 LastFrameDragOffset => m_pressHoldPoint - m_pressLastHoldPoint;
+		public Vector2 PressingDragOffset => m_pressHoldPoint - m_pressStartPoint;
+
+
 		public void DebugEvent(string text)
 		{
 			Debug.Log(gameObject.name + " : " + text);

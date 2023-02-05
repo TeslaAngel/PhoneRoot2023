@@ -123,7 +123,8 @@ namespace Logic
         public void OnGotFocus()
         {
             // µØ¥∞÷√∂•
-            SetLayerOrderZ(Level2Logic.Inst.GetPopupWindowTopZ());
+            if (Level2Logic.Inst)
+                SetLayerOrderZ(Level2Logic.Inst.GetPopupWindowTopZ());
         }
 
 

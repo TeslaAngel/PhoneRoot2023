@@ -52,6 +52,8 @@ namespace Logic
 
 		#region PopupWindow
 
+		#region Pool
+
 		[SerializeField]
 		protected List<PopupAnim> popupPrefabs;
 
@@ -109,6 +111,8 @@ namespace Logic
 			}
 			OnReleasePopupWindow();
 		}
+
+		#endregion Pool
 
 
 		public int RandomPopupWindowStyle()
@@ -211,6 +215,8 @@ namespace Logic
 		#endregion Audio
 
 
+		#region Animation
+
 		[Space()]
 
 		[SerializeField]
@@ -296,6 +302,8 @@ namespace Logic
 		{
 			vagueAnim.StartVague();
 		}
+
+		#endregion Animation
 
 
 		#region MemoryWarn
@@ -388,6 +396,8 @@ namespace Logic
 		#endregion MemoryWarn
 
 
+		#region Scene
+
 		[Space()]
 
 		[SerializeField]
@@ -401,6 +411,8 @@ namespace Logic
 			SceneManager.LoadScene(nextSceneName);
 			//SceneJumper.SetActive(true);
 		}
+
+		#endregion Scene
 
 
 		#region GhostTalk
@@ -573,9 +585,6 @@ namespace Logic
 		}
 
 		#endregion Timeline
-
-
-		// TODO : 内存警告时的说话效果
 
 
 		// TODO : 打字机音效
