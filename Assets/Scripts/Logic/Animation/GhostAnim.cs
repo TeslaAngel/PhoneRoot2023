@@ -99,16 +99,13 @@ namespace Logic
 				var realTime = Mathf.Abs(time / offsetX * diffX);
 				if (realTime > 0)
 				{
+					var scale = transform.localScale;
+					scale.x = offsetX > 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+					transform.localScale = scale;
 					ghostAnimData
 						.FinishAllAnims()
 						.StartValueAnim(TargetType.PosX, targetX, realTime);
 				}
-			}
-			else
-			{
-				ghostAnimData
-					.FinishAllAnims()
-					.SetValueImmedi(TargetType.PosX, targetX);
 			}
 		}
 	}
