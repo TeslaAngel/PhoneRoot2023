@@ -33,7 +33,7 @@ public class VirusTargetingScript : MonoBehaviour
         else
         {
             transform.position = Vector3.Lerp(transform.position, TargetedPos, .05f);
-            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(.2f, .2f, 1f), .05f);
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(.2f, .2f, 1f), .02f);
             if (HB)
             {
                 HB.SetActive(true);
