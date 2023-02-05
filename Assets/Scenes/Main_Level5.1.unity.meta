@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Main_Level5.1.unity.meta
 guid: be09a38fea634a64aaba5af62b43a8f5
+========
+guid: bd64a12cd8f39064f8b1ed57c7743134
+folderAsset: yes
+>>>>>>>> cf015d6f52e121861f0c89da283fdb612ba0f621:Assets/Art/AnimatedGhost/CA#PTURED.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
