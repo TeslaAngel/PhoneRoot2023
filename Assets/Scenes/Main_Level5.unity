@@ -3229,6 +3229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21eba59468d0eaa44a3d8b543ec41999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2134836863389923470}
   procBarItem: {fileID: 2134836863389923472}
   waterDropGeneratePos: {x: 0, y: -1.5}
   dragThreshold: 0
