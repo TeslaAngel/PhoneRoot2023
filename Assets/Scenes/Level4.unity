@@ -594,7 +594,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302093898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0.5, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1268169446}
@@ -1184,6 +1184,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 1954942627
       objectReference: {fileID: 0}
+    - target: {fileID: 3436811893065855326, guid: 835e815d8214cd940bf73931e87aea21, type: 3}
+      propertyPath: nextScene
+      value: Main_Level5
+      objectReference: {fileID: 0}
     - target: {fileID: 3436811893065855327, guid: 835e815d8214cd940bf73931e87aea21, type: 3}
       propertyPath: m_Name
       value: Scene Jumper (1)
@@ -1305,7 +1309,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1964552543
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: f6f56199283d12647932ce849a4982eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2737,6 +2741,67 @@ MonoBehaviour:
   MousingColor: {r: 0.5188679, g: 0.51723623, b: 0.51723623, a: 0.6862745}
   ShrinkTimeLerp: 2
   RotateSensitivity: 10
+--- !u!1001 &1212423127
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2134836863178354826, guid: f386c7a436857be40ab3bda2070013e7, type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134836863178354826, guid: f386c7a436857be40ab3bda2070013e7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134836863178354826, guid: f386c7a436857be40ab3bda2070013e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134836863178354826, guid: f386c7a436857be40ab3bda2070013e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134836863178354826, guid: f386c7a436857be40ab3bda2070013e7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134836863178354826, guid: f386c7a436857be40ab3bda2070013e7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134836863178354826, guid: f386c7a436857be40ab3bda2070013e7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134836863178354826, guid: f386c7a436857be40ab3bda2070013e7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134836863178354826, guid: f386c7a436857be40ab3bda2070013e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134836863178354826, guid: f386c7a436857be40ab3bda2070013e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134836863178354826, guid: f386c7a436857be40ab3bda2070013e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134836863178354836, guid: f386c7a436857be40ab3bda2070013e7, type: 3}
+      propertyPath: m_Name
+      value: ProcessBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134836863178354837, guid: f386c7a436857be40ab3bda2070013e7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2908249955430891130, guid: bef69996b50c53d4bac91af740f9ccfc, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f386c7a436857be40ab3bda2070013e7, type: 3}
 --- !u!1 &1261475677
 GameObject:
   m_ObjectHideFlags: 0
@@ -4202,7 +4267,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1954942627
   m_SortingLayer: 5
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: af363c0d77eb61e48a727a4b8b02156d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
