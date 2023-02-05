@@ -161,7 +161,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 318699963
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 4fcabd2b24eb2e844a3e08e9a946781b, type: 3}
   m_Color: {r: 0.735849, g: 0.735849, b: 0.735849, a: 0}
@@ -269,7 +269,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 318699963
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3b54721512634b745aeb947d90ad116d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -388,12 +388,6 @@ MonoBehaviour:
   popupDefScale: {x: 1, y: 1}
   openPopupTime: 0.15
   closePopupTime: 0.15
-  randomPosRange:
-    serializedVersion: 2
-    x: -2
-    y: -3
-    width: 2
-    height: 3
   bgRenderer: {fileID: 7633797639625320493}
   closeBtnRenderer: {fileID: 5845493575701428566}
 --- !u!114 &2527399216946290024
@@ -421,7 +415,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0021691322, y: 0.30658746}
+  m_Offset: {x: -0.0021691322, y: 0.16849422}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -432,5 +426,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.5776262, y: 2.8231854}
+  m_Size: {x: 2.5776262, y: 3.099372}
   m_EdgeRadius: 0

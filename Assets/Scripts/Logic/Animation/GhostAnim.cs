@@ -11,6 +11,8 @@ namespace Logic
 	{
 		protected void Awake()
 		{
+			m_basePosition = transform.position;
+
 			m_renderer = GetComponent<SpriteRenderer>();
 
 			m_currentFrame = 0;
@@ -76,14 +78,35 @@ namespace Logic
 		}
 
 
+		protected Vector3 m_basePosition;
+
 		[SerializeField]
 		protected SpriteItemAnimData ghostAnimData;
 
-		public void StartMoveXAnim(float dist, float time)
+		//public void StartMoveXAnim(float dist, float time)
+		//{
+		//	ghostAnimData
+		//		.FinishAllAnims()
+		//		.StartValueAnim(TargetType.PosX, ghostAnimData.CurrentPosX + dist, time);
+		//}
+
+		public void StartMoveOffsetXAnim(float offsetX, float time)
 		{
-			ghostAnimData
-				.FinishAllAnims()
-				.StartValueAnim(TargetType.PosX, ghostAnimData.CurrentPosX + dist, time);
+			var targetX = m_basePosition.x + offsetX;
+			if (offsetX != 0)
+			{
+				var diffX = targetX - transform.position.x;
+				var realTime = Mathf.Abs(time / offsetX * diffX);
+				if (realTime > 0)
+				{
+					var scale = transform.localScale;
+					scale.x = offsetX > 0 ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+					transform.localScale = scale;
+					ghostAnimData
+						.FinishAllAnims()
+						.StartValueAnim(TargetType.PosX, targetX, realTime);
+				}
+			}
 		}
 	}
 }

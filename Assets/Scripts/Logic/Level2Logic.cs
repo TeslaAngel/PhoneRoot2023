@@ -177,7 +177,7 @@ namespace Logic
 
 		#region Audio
 
-[SerializeField]
+		[SerializeField]
 		protected List<AudioSource> audioSources = new List<AudioSource>();
 
 		public void PlaySeAudio(AudioClip audio)
@@ -210,7 +210,6 @@ namespace Logic
 
 		#endregion Audio
 
-		public GameObject SceneJumper;
 
 		[Space()]
 
@@ -281,11 +280,15 @@ namespace Logic
 
 		protected void StartGhostMoveLeft()
 		{
-			ghostAnim.StartMoveXAnim(-ghoseMoveDist, ghoseMoveLeftTime);
+			//ghostAnim.StartMoveXAnim(-ghoseMoveDist, ghoseMoveLeftTime);
+			//ghostAnim.StartMoveLeftAnim(ghoseMoveDist, ghoseMoveLeftTime);
+			ghostAnim.StartMoveOffsetXAnim(-ghoseMoveDist, ghoseMoveLeftTime);
 		}
 		protected void StartGhostMoveRight()
 		{
-			ghostAnim.StartMoveXAnim(ghoseMoveDist, ghoseMoveRightTime);
+			//ghostAnim.StartMoveXAnim(ghoseMoveDist, ghoseMoveRightTime);
+			//ghostAnim.StartMoveRightAnim(ghoseMoveDist, ghoseMoveRightTime);
+			ghostAnim.StartMoveOffsetXAnim(ghoseMoveDist, ghoseMoveRightTime);
 		}
 
 
@@ -365,17 +368,17 @@ namespace Logic
 		protected void TipMemoryWarn1()
 		{
 			memoryWarnAnim.StartWarn1Anim();
-			// ...
+			StartMemoryWarnGhostTalk(1);
 		}
 		protected void TipMemoryWarn2()
 		{
 			memoryWarnAnim.StartWarn2Anim();
-			// ...
+			StartMemoryWarnGhostTalk(2);
 		}
 		protected void TipMemoryWarn3()
 		{
 			memoryWarnAnim.StartWarn3Anim();
-			// ...
+			StartMemoryWarnGhostTalk(3);
 		}
 		protected void TipMemoryWarn4()
 		{
@@ -389,11 +392,14 @@ namespace Logic
 
 		[SerializeField]
 		protected string nextSceneName = "Level3";
-		
+
+		//[SerializeField]
+		//protected GameObject SceneJumper;
+
 		protected void GotoNextScene()
 		{
-			//SceneManager.LoadScene(nextSceneName);
-			SceneJumper.SetActive(true);
+			SceneManager.LoadScene(nextSceneName);
+			//SceneJumper.SetActive(true);
 		}
 
 
@@ -442,20 +448,26 @@ namespace Logic
 		[SerializeField]
 		protected float waitTimeAfterVague = .5f;
 
-		[SerializeField]
-		protected float waitTimeAfterGhostTalk0 = .5f;
-
 		//[SerializeField]
 		//protected float waitTimeAfterGhostLeft = 6f;
 		[SerializeField]
 		protected float waitTimeAfterGhostRight = 1f;
+
+		[SerializeField]
+		protected float waitTimeAfterGhostTalk0 = .5f;
+		[SerializeField]
+		protected float waitTimeAfterGhostTalk1 = .5f;
+		[SerializeField]
+		protected float waitTimeAfterGhostTalk2 = .5f;
+		[SerializeField]
+		protected float waitTimeAfterGhostTalk3 = .5f;
 
 		protected void StartLevel()
 		{
 			StartCoroutine(StartLevel_Coroutine());
 		}
 
-		public IEnumerator StartLevel_Coroutine()
+		protected IEnumerator StartLevel_Coroutine()
 		{
 			Debug.Log("Start Level2");
 
@@ -465,6 +477,7 @@ namespace Logic
 			PlaySeAudio(lockWechatAudio);
 			yield return new WaitForSeconds(waitTimeAfterLockCage);
 
+			/*
 			StartGhostAnimFrames();
 			ShowGhost();
 			StartGhostMoveLeft();
@@ -474,7 +487,47 @@ namespace Logic
 			yield return new WaitForSeconds(waitTimeAfterVague);
 			PrintGhostTalkText(0);
 			yield return new WaitForSeconds(PrintTextTotalDuration(0) + waitTimeAfterGhostTalk0);
+			*/
+			yield return Coroutine_VagueAndGhostLeftAndTalk(0, waitTimeAfterGhostTalk0);
 
+			/*StartGhostMoveRight();
+			FadeOutGhostTalkText();
+			yield return new WaitForSeconds(ghoseMoveRightTime);
+			HideGhost();
+			StopGhostAnimFrames();
+			ClearGhostTalkText();
+			yield return new WaitForSeconds(waitTimeAfterGhostRight);*/
+			yield return Coroutine_GhostRightAndFadeOutText();
+
+			/*ShowNewPopupWindow(true);
+			yield return new WaitForSeconds(0.8f);
+			ShowNewPopupWindow();
+			yield return new WaitForSeconds(0.3f);
+			ShowNewPopupWindow();
+			yield return new WaitForSeconds(0.15f);
+			ShowNewPopupWindow();
+			yield return new WaitForSeconds(0.15f);
+			ShowNewPopupWindow();*/
+			yield return Coroutine_OpenSomeNewPopupWindow();
+
+			yield return new WaitForSeconds(0.1f);
+			EnableAllAppIconItems();
+		}
+
+		protected IEnumerator Coroutine_VagueAndGhostLeftAndTalk(int index, float waitTime = 0)
+		{
+			StartGhostAnimFrames();
+			ShowGhost();
+			StartGhostMoveLeft();
+			StartVagueAnim();
+			yield return new WaitForSeconds(vagueAnim.AnimTotalDuration() + waitTimeAfterVague);
+
+			PrintGhostTalkText(index);
+			yield return new WaitForSeconds(PrintTextTotalDuration(index) + waitTime);
+		}
+
+		protected IEnumerator Coroutine_GhostRightAndFadeOutText()
+		{
 			StartGhostMoveRight();
 			FadeOutGhostTalkText();
 			yield return new WaitForSeconds(ghoseMoveRightTime);
@@ -482,7 +535,10 @@ namespace Logic
 			StopGhostAnimFrames();
 			ClearGhostTalkText();
 			yield return new WaitForSeconds(waitTimeAfterGhostRight);
+		}
 
+		protected IEnumerator Coroutine_OpenSomeNewPopupWindow()
+		{
 			ShowNewPopupWindow(true);
 			yield return new WaitForSeconds(0.8f);
 			ShowNewPopupWindow();
@@ -492,12 +548,34 @@ namespace Logic
 			ShowNewPopupWindow();
 			yield return new WaitForSeconds(0.15f);
 			ShowNewPopupWindow();
+		}
 
-			yield return new WaitForSeconds(0.1f);
-			EnableAllAppIconItems();
+
+		protected IEnumerator m_currentMemWarnTalkCoroutine;
+
+		protected void StartMemoryWarnGhostTalk(int index)
+		{
+			if (m_currentMemWarnTalkCoroutine != null)
+				StopCoroutine(m_currentMemWarnTalkCoroutine);
+			m_currentMemWarnTalkCoroutine = StartMemoryWarnGhostTalk_Coroutine(index);
+			StartCoroutine(m_currentMemWarnTalkCoroutine);
+		}
+
+		protected IEnumerator StartMemoryWarnGhostTalk_Coroutine(int index)
+		{
+			var time = index == 0 ? waitTimeAfterGhostTalk0
+					 : index == 1 ? waitTimeAfterGhostTalk1
+					 : index == 2 ? waitTimeAfterGhostTalk2
+					 : index == 4 ? waitTimeAfterGhostTalk3
+					 : 0;
+			yield return Coroutine_VagueAndGhostLeftAndTalk(index, time);
+			yield return Coroutine_GhostRightAndFadeOutText();
 		}
 
 		#endregion Timeline
+
+
+		// TODO : 内存警告时的说话效果
 
 
 		// TODO : 打字机音效
