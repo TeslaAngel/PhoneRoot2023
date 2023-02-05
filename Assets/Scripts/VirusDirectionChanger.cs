@@ -9,6 +9,8 @@ public class VirusDirectionChanger : MonoBehaviour
     public Sprite[] Left;
     private VirusScript virusScript;
 
+    public VirusScript[] VSs;
+
     private void Awake()
     {
         virusScript = GetComponent<VirusScript>();
@@ -26,6 +28,10 @@ public class VirusDirectionChanger : MonoBehaviour
 
     public void SelfDestory()
     {
+        for(int i = 0; i < VSs.Length; i++)
+        {
+            VSs[i].enabled = true;
+        }
         Destroy(gameObject);
     }
 }

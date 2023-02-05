@@ -11,6 +11,17 @@ public class VirusScript : MonoBehaviour
     private int AniProcess = 0;
     private SpriteRenderer spriteRenderer;
 
+    [Space]
+    public float life;
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        life -= Time.deltaTime;
+        if (life <= 0)
+        {
+            this.GetComponent<VirusScript>().enabled = false;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,5 +44,6 @@ public class VirusScript : MonoBehaviour
             }
             spriteRenderer.sprite = Sprites[AniProcess];
         }
+
     }
 }

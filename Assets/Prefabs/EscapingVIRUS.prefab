@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 50
-  m_Sprite: {fileID: 21300000, guid: ee576b969441eaa468cca69d14cf7fd8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d11930a23b07da749b04ca65f9fb9c6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,11 +98,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sprites:
-  - {fileID: 21300000, guid: ee576b969441eaa468cca69d14cf7fd8, type: 3}
-  - {fileID: 21300000, guid: 1be6b611fb106794d967ecf744d190c1, type: 3}
-  - {fileID: 21300000, guid: 012b5ae4a919c0f4ab266b8ce244c023, type: 3}
-  - {fileID: 21300000, guid: 7b9e335dbc69e4f4995838cf790970ca, type: 3}
+  - {fileID: 21300000, guid: d11930a23b07da749b04ca65f9fb9c6b, type: 3}
+  - {fileID: 21300000, guid: 14305b2aee6916b4c8a76570b973de12, type: 3}
+  - {fileID: 21300000, guid: 8976637866cfe92439760ac552523bae, type: 3}
+  - {fileID: 21300000, guid: 64090d8c423303b47973777e7513d948, type: 3}
   AnimationInterval: 0.2
+  life: 0
 --- !u!114 &4823659986443884409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1a5e3b526274342b9da26c166b48e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HB: {fileID: 0}
 --- !u!61 &-7124905696950575686
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -131,7 +133,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -4.2351985}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 1}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 3.85, y: 8.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
