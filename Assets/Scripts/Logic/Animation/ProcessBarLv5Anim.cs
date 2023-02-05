@@ -8,11 +8,13 @@ namespace Logic
 
     public class ProcessBarLv5Anim : MonoBehaviour
     {
-        protected SpriteRenderer m_renderer;
+        [SerializeField]
+        protected SpriteRenderer spriteRenderer;
 
 		protected void Awake()
 		{
-            m_renderer = GetComponent<SpriteRenderer>();
+            if (!spriteRenderer)
+                spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
 
@@ -46,7 +48,7 @@ namespace Logic
         public void SetProceeBarSprite(int index)
         {
             if (0 <= index && index < processBarSprites.Count)
-                m_renderer.sprite = processBarSprites[index];
+                spriteRenderer.sprite = processBarSprites[index];
         }
 
 
@@ -79,7 +81,7 @@ namespace Logic
             var collider = GetComponent<Collider2D>();
             collider.enabled = false;
 
-            m_renderer.enabled = false;
+            spriteRenderer.enabled = false;
 
             StartCoroutine(StartDropAnim_Coroutine());
         }
